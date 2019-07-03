@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="style/reset.css"  rel="stylesheet">
+    <link href="style/style.css"  rel="stylesheet">
+    <script src="https://apis.google.com/js/platform.js?onload=init" async="" defer="" gapi_processed="true"></script>
+    <script src='https://www.googleapis.com/auth/drive.file'></script>
+    <title>Piskel-clone</title>
+    <script src='app.bundle.js'></script>
+</head>
+<body>
+    <header>
+        <h1>Piskel-clone</h1>
+        <h2>New Piskel</h2>
+        <ul class='google'>
+            <li class='NamePhoto'>
+                <img src='image/keyboard.png' id = 'userPhoto'>
+                <p id='userName'>LoraBard</p>
+            </li>
+            <li>
+                <button id ='logIn'>Sign in</button>
+                <button id ='logOut'>Sign out</button>
+            </li>
+        </ul>
+    </header>
+    <main>
+            <div id="penSizes">
+                    <ul>
+                        <li data-pen="1">
+                            <div class="size1"></div>
+                        </li>
+                        <li data-pen="2">
+                            <div class="size2"></div>
+                        </li>
+                        <li data-pen="3">
+                            <div class="size3"></div>
+                        </li>
+                        <li data-pen="4">
+                            <div class="size4"></div>
+                        </li>
+                    </ul>
+                </div>
+        <section class="tools">
+            <div class="first">
+                <ul>
+                    <li id="pen"><img src="image/pencil.png" id="pen" alt=""><span>Pen tool</span></li>
+                    <li id="rectangle"><img src="image/rectangle.png" alt=""><span>Recktangle tool</span></li>
+                    <li id="move"><img src="image/hand.png" alt=""><span>Move tool</span></li>
+                    <li id="lighten"><img src="image/lighten.png" alt=""><span>Lighten tool<br><br>
+                        SHIFT - Darken
+                    </span></li>
+                    <li id="shape"><img src="image/shape.png" alt=""><span>Shape tool<br><br>
+                        DEL - delete selection
+                    </span></li>
+                    <li id="picker"><img src="image/picker.png" alt=""><span>Color picker tool</span></li>
+                </ul> 
+            </div>
+            <div class="first">
+                <ul>
+                    <li id="line"><img src="image/strocke.png" id="line" alt=""><span>Line tool</span></li>
+                    <li id="bucket"><img src="image/bucket.png" alt=""><span>Paint bucket tool</span></li>
+                    <li id="eraser"><img src="image/eraser.png" alt=""><span>Eraser tool</span></li>
+                    <li id="circle"><img src="image/circle.png" alt=""><span>Circle tool</span></li>
+                    <li id="paintSame"><img src="image/magicbucket.png" alt=""><span>Paint same color tool</span></li>
+                    <li id="mirror"><img src="image/mirror.png" alt=""><span class='increase'>Verical Mirror pen tool<br><br>
+                        SHIFT - horizontal mirror pen<br><br>
+                        CTRL - vertical and horizontal mirror pen
+                    </span></li>
+                </ul> 
+            </div>
+            <div class="color">
+                <input type="color" id="rightBut" value = "#104d0b">
+                <input type="color" id="leftBut" value = "#000080">
+                <img src="image/arrow.png" class="arrow" id='changeColor'>
+            </div>
+        </section>
+        <section class="tooltips">
+            <div id='shapeTooltip'>
+
+            </div>
+        </section>
+        <button id = 'keyboard'><img src = 'image/keyboard.png'></button>;
+        <section id = 'shortcuts'>
+            <button id = 'cross'><img src="image/cross.png" alt=""></button>
+            <div>
+                <ul>
+                    <li><img src="image/pencil.png" alt=""></li>
+                    <li><img src="image/strocke.png" alt=""></li>
+                    <li><img src="image/rectangle.png" alt=""></li>
+                    <li><img src="image/bucket.png" alt=""></li>
+                    <li><img src="image/hand.png" alt=""></li>
+                    <li><img src="image/eraser.png" alt=""></li>
+                    <li><img src="image/lighten.png" alt=""></li>
+                    <li><img src="image/circle.png" alt=""></li>
+                    <li><img src="image/shape.png" alt=""></li>
+                    <li><img src="image/magicbucket.png" alt=""></li>
+                    <li><img src="image/picker.png" alt=""></li>
+                    <li><img src="image/mirror.png" alt=""></li>
+                </ul>
+                <ul id = 'toolShorts'>
+                    <li data-tool = 'pen'>P</li>
+                    <li data-tool = 'line'>L</li>
+                    <li data-tool = 'rectangle'>R</li>
+                    <li data-tool = 'bucket'>B</li>
+                    <li data-tool = 'move'>H</li>
+                    <li data-tool = 'eraser'>E</li>
+                    <li data-tool = 'lighten'>U</li>
+                    <li data-tool = 'circle'>C</li>
+                    <li data-tool = 'shape'>S</li>
+                    <li data-tool = 'paintSame'>A</li>
+                    <li data-tool = 'picker'>K</li>
+                    <li data-tool = 'mirror'>M</li>
+                </ul>
+                <ul class='description'>
+                    <li>Pen tool</li>
+                    <li>Stroke line tool</li>
+                    <li>Rectangle tool</li>
+                    <li>Paint bucket tool</li>
+                    <li>Moving tool</li>
+                    <li>Eraser tool</li>
+                    <li>Lighten tool</li>
+                    <li>Circle</li>
+                    <li>Shape selection tool</li>
+                    <li>Magic paint tool</li>
+                    <li>Color picker</li>
+                    <li>Vertical mirror pen tool</li>
+                </ul>
+            </div>
+        </section>
+        <section class="frameBox">
+            <ul id="frames">
+                <li>
+                    <div id="num">1</div>
+                    <canvas data-number ="1" id="frame" height="100" width="100" draggable="true"></canvas>
+                    <button id="delete"><img src="image/remove.png" alt=""></button>
+                    <button id="copy"><img src="image/copy.png" alt=""></button>
+                    <button id="move"><img src="image/move.png" alt=""></button>
+                </li>
+            </ul>
+            <button id="add"><img src="">Add new frame</button>
+        </section>
+        <section class="field">
+            <div class = "transparent"></div>
+            <canvas id="canvas" width="832" height="832"></canvas>
+        </section>
+        <section class="preview">
+            <canvas id="animation" width="200" height="200"></canvas>
+            <div class = 'full'>
+                <img src = 'image/fullScreen.png' id = 'fullScreen'>
+            </div>
+            <div id="slider">
+                <output id="out">1FPS</output>
+                <input type="range" min="1" max="24" value="1" id="slider">
+            </div>
+        </section>
+        <section>
+            <div id="other">
+                <ul>
+                    <li id = 'gif'>GIF</li>
+                    <li id = 'apng'>APNG</li>
+                    <li id = 'pscl'>PSCL</li>
+                </ul> 
+            </div>
+        </section>
+        <section class="layers Transform">
+                <div class="showLayers">
+                    <h3>Sizes</h3>
+                </div>
+                <ul id="TransformTool">
+                    <li data-size="32">32</li>
+                    <li data-size="64">64</li>
+                    <li data-size="128">128</li>
+                </ul>
+        </section>
+        <div id = 'import'>
+            <input type = 'file' name="photo" accept='.pscl' value='input' id = 'importing'>
+            <label for="importing">Import</label>
+        </div>
+        <div class ='upload'>
+            <input type = 'file' name="photo" accept='image/*,video/*' value='input' id = 'uploading'>
+            <label for="uploading">Upload</label>
+        </div>
+        <div class ='coordinates'>
+            <p id = 'numSize'>[32 x 32]</p>
+            <p id = 'numCoord'>33 : 38</p>
+        </div>
+    </main>
+<script type="text/javascript" src="app.bundle.js"></script></body>
+</html>
